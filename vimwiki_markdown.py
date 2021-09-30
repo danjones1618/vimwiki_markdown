@@ -52,7 +52,10 @@ class LinkInlineProcessor(markdown.inlinepatterns.LinkInlineProcessor):
             if auto_index and href.endswith("/"):
                 href += "index.html"
             elif not href.endswith("/"):
-                href += ".html"
+                if href.endswith(".md"):
+                    href = href.replace(".md", ".html")
+                else:
+                    href += ".html"
         return href, title, index, handled
 
 
